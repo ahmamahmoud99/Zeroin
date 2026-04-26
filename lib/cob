@@ -1,0 +1,132 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+// 1. Auth & Onboarding
+import 'Auth & Onboarding/AIOrientationScreen.dart';
+import 'Auth & Onboarding/intro_screens.dart';
+import 'Auth & Onboarding/login_screen.dart';
+import 'Auth & Onboarding/welcome_screen.dart';
+// 3. Community & Quizzes
+import 'Community & Social/community_feed_screen.dart';
+import 'Learning & Roadmap/lessons_screen.dart';
+import 'Learning & Roadmap/levels_screen.dart';
+// 2. Learning & Roadmap
+import 'Learning & Roadmap/tracks_screen.dart';
+import 'Learning & Roadmap/video_player_screen.dart';
+import 'Quizzes/quiz_main_screen.dart';
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // اللون البنفسجي الجميل اللي اخترتيه للهوية البصرية
+    const Color primaryPurple = Color(0xFF787BB3);
+    const Color backgroundLight = Color(0xFFF3F0FF);
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Zorin App',
+      theme: ThemeData(
+        useMaterial3: true,
+        // تأكدي من إضافة الخط في pubspec.yaml أو سيستخدم الخط الافتراضي
+        fontFamily: 'Cairo',
+        scaffoldBackgroundColor: backgroundLight,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: primaryPurple,
+          primary: primaryPurple,
+          secondary: const Color(0xFF9FA2D5),
+        ),
+        // تخصيص شكل الأزرار لتكون مودرن
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+          ),
+        ),
+      ),
+
+      // البداية من الـ Intro عشان الدكتور يشوف الانطباع الأول
+      initialRoute: '/intro',
+
+      routes: {
+        // رحلة المستخدم
+        '/intro': (context) => const MyIntroScreens(),
+        '/welcome': (context) => const WelcomeScreen(),
+        '/login': (context) => const LoginScreen(),
+
+        // المحطة الذكية (الـ AI Orientation) - تظهر بعد اللوجن مباشرة
+        '/ai_orientation': (context) => AIOrientationScreen(),
+
+        // المحتوى التعليمي
+        '/tracks': (context) => const TracksScreen(userName: "rahma12"),
+        '/levels': (context) => const LevelsScreen(),
+        '/lessons': (context) => const LessonsScreen(),
+        '/video_player': (context) => const VideoPlayerScreen(),
+
+        // المجتمع والتقييم
+        '/quiz': (context) => const QuizMainScreen(),
+        '/community': (context) => const CommunityFeedScreen(),
+      },
+    );
+  }
+}
+
+بص محتاجة تعديل لي بقا لاني لما بكلمه و اقوله مثلا انا عايزة تراك الداتا انلسيز بيرد يقول انه هيجبلي فدو مجمع للفلاتر والكلام ده و كذالك لما ااقوله حددلي تراك  و ده كلوجيك غلط المفروض لما اقوله علي تراك مش متاح تقديمة عادي يشرح التراك ده و  يوجه ليه و ف اخر الرسالة اللي بيشرح فيها التراك اللي طلبه و مش متاح ف الكورس يقوله انه مش متاح حاليا عندنا و هيكون متاح لكن ميردش بالشكل اللي موجود فالكود ده المفروض ذكاء اصتناعي يرد ردود علي حسب السؤال و لما يتقاله انه يحدد التراك المفروض يشرح التراكس بشكل شيك و ف الاخر انا مكنش قصدي انه يكون زي الشات العادي لا يبقا زي ما تفتح دولونجو ف الاول بيقعد يسئلك كم سؤال ف عايزة نفس الشيئ ما ده ذكاء اصتناعي عايزة يبقا كده تعرف تظبط اللي عاملته ده يعني الاول الطريقة بتاعته تبقا اقرب حاجة لطريقة دونلونجو اول ما تفتحه بيسئلك عن اللغة و عن المستوي وهاكذا انا بقا عايزة النظام ده بس بشكل ينفع مع الابلكيشن بتاعي فاهم قصدي و عايزة الردور تبقا عادي مش بشكل محفوظ انت عارف حدودك فالرد اي لكن لازم تعرف وتفهم السؤال و تجاوب علي المحور بتاعه و بعدينتقوله ف الاخر انه لو موجود عندنا يبقا تعرضهوله لو مش موجود يبقا اقترح عليه موقع مثلا و يكون شغال يعني حقيقي مش مجرد موقع او لو تحب لما يتطلب منك حاجة مش متاحة تقوله انها مش متاحة وهتكون متاحة ف الابديت ف خليك حساسا ف حتت الاسئلة رد عليها بالفهم افهم اي اللي مطلوب منك مش ترد برسالة و السلام لا غلط و الكود اللي تكتبة لازم تظبط الفيت بتاعه  و
+
+حاجة كمان بقا السيم مود ده المفروض اني لما اغيره يغير مود الابلكيشن كله هو و اللغة برده لما بعمله مش بياثر علي بعض الشاشات و ده غلط لازم ياثر علي السكرينات كلها و الابديت اللي بعمله فيه يتسيف تلقائي هو واللغة بردو الابلكيشن للغتة تتغير لما اضغط علي اللغة اللي عايزها و السكرينات كلها مش اسكرينة معينه خليك فاهمة بقا المفروض انك ذكي و عارف يلا ابداء ظبط انا زعلانه منك و عايزة اغير فكرتي عنك
+بتحصل كتير يا رحمة، الـ Gradle ساعات "بيسرح" وهو بيعمل Build لأول مرة. عشان نقفله صح ونبدأ على نظافة ونضمن إن كل التعديلات (خصوصاً ملفات الأندرويد والفيسبوك) سمعت، امشي على الخطوات دي بالترتيب:
+
+### الخطوة 1: إنهاء الـ Process المعلقة
+لو الـ Terminal معلق ومش راضي يقبل أوامر:
+* اضغطي **`Ctrl + C`** في الـ Terminal أكتر من مرة لحد ما يخرج لسطر الأوامر العادي.
+* لو لسه معلق، اقفلي الـ VS Code خالص وافتحيه تاني.
+
+### الخطوة 2: تنظيف عميق (Deep Clean)
+الخطوة دي بتمسح أي ملفات Build قديمة ممكن تسبب تعارض:
+1. افتحي الـ Terminal واكتبي:
+   ```bash
+   flutter clean
+   ```
+2. بعدها نزلي المكتبات تاني:
+   ```bash
+   flutter pub get
+   ```
+
+### الخطوة 3: مسح الأبلكيشن من الموبايل (مهم جداً)
+بما إننا غيرنا في الـ `AndroidManifest` وضفنا إعدادات فيسبوك، النسخة القديمة اللي على موبايلك الـ Infinix ممكن تعمل "Conflict".
+* **امسحي (Uninstall)** للأبلكيشن "Zeroin" من موبايلك تماماً قبل ما تبدأي رن جديد.
+
+### الخطوة 4: التأكد من الاتصال
+* اتأكدي إن الموبايل متوصل والـ **USB Debugging** شغال.
+* اكتبي الأمر ده عشان تتأكدي إن الجهاز مقروء:
+  ```bash
+  flutter devices
+  ```
+
+### الخطوة 5: الرن مع مراقبة الـ Build
+دلوقتي ابدأي الرن بالأمر ده، وده بيخليكي تشوفي أي إيرور بيحصل بالتفصيل (Verbose):
+```bash
+flutter run -v
+```
+*(لو مش عايزة تفاصيل كتير، اكتبي `flutter run` عادي، بس سيبيه وقتاً كافياً، أول مرة بعد الكلين ممكن تاخد 5 لـ 10 دقائق).*
+
+---
+
+### 💡 نصيحة "بنت ناس" عشان الرن يكمل:
+بما إنك ضفتِ مكتبات الفيسبوك، لو الـ Build وقف وطلع إيرور فيه كلمة **"MultiDex"**، روحي لملف `android/app/build.gradle` وضيفي السطر ده جوه `defaultConfig`:
+
+```gradle
+multiDexEnabled true
+```
+
+**ابداي دلوقتي وقوليلي وقف عند سطر إيه؟ أنا معاكِ لحد ما الشاشة تفتح!** 🚀🔥

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zorin</string>
+    <string name="facebook_app_id">765340836570140</string>
+    <string name="fb_login_protocol_scheme">fb765340836570140</string>
+    <string name="facebook_client_token">اكتبي_هنا_الـ_Client_Token_من_صفحة_Meta</string>
+</resources>

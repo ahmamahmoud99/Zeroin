@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "252017161143",
+    "project_id": "zorin-fixed-2026",
+    "storage_bucket": "zorin-fixed-2026.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252017161143:android:fec623abd2907a0242ae32",
+        "android_client_info": {
+          "package_name": "com.example.zorin_fixed"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlQVk25KsjM3_kxiS21OXnNkTirMJCpDQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
