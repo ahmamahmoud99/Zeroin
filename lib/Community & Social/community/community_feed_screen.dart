@@ -37,71 +37,91 @@ class _CommunityFeedScreenState extends State<CommunityFeedScreen> {
       isLiked: true,
       commentsCount: 10,
     ),
+    PostModel(
+      id: "3",
+      username: "Omar Ali",
+      studentId: "@dev_omar",
+      userImageUrl: "assets/image/user_avatar.png",
+      content: "It's truly inspiring to see such a great achievement! 🏆",
+      likesCount: 50,
+      isLiked: true,
+      commentsCount: 10,
+    ),
+    PostModel(
+      id: "4",
+      username: "Omar Ali",
+      studentId: "@dev_omar",
+      userImageUrl: "assets/image/user_avatar.png",
+      content: "It's truly inspiring to see such a great achievement! 🏆",
+      likesCount: 50,
+      isLiked: true,
+      commentsCount: 10,
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    // شلنا الـ Scaffold والـ AppBar من هنا عشان ميحصلش تداخل
-    // وبدلناهم بـ Stack عشان نحافظ على الـ FloatingActionButton في مكانه
-    return Stack(
-      children: [
-        ListView.separated(
+    return Scaffold(
+      backgroundColor: const Color(0xFFF5F5F7),
+
+      body: SafeArea(
+        child: ListView.separated(
           padding: const EdgeInsets.all(16),
           itemCount: posts.length,
           separatorBuilder: (context, index) => const SizedBox(height: 16),
           itemBuilder: (context, index) =>
               _buildPostCard(context, posts[index]),
         ),
-        // زر الـ Create Post هيفضل في مكانه بالظبط
-        Positioned(
-          bottom: 16,
-          right: 16,
-          child: FloatingActionButton.extended(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CreatePostScreen()),
-            ),
-            label: const Text("Create Post"),
-            icon: const Icon(Icons.edit_note_rounded),
-            backgroundColor: const Color(0xFF9186C4),
-          ),
+      ),
+
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CreatePostScreen()),
         ),
-      ],
+        label: const Text("Create Post"),
+        icon: const Icon(Icons.edit_note_rounded),
+        backgroundColor: const Color(0xFF9186C4),
+      ),
     );
   }
 
   // --- كل الميثودات دي زي ما هي بالظبط (الديزاين واللوجيك محفوظ) ---
   Widget _buildPostCard(BuildContext context, PostModel post) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildUserHeader(context, post),
-            const SizedBox(height: 16),
-            Text(
-              post.content,
-              style: const TextStyle(fontSize: 15, height: 1.4),
+    return Material(
+      // 👈 أضيفي ده
+      color: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
             ),
-            if (post.codeSnippet != null && post.codeSnippet!.isNotEmpty)
-              _buildCodeBlock(post.codeSnippet!),
-            const SizedBox(height: 20),
-            Container(height: 1, color: Colors.grey[200]),
-            const SizedBox(height: 10),
-            _buildActionButtons(context, post),
           ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildUserHeader(context, post),
+              const SizedBox(height: 16),
+              Text(
+                post.content,
+                style: const TextStyle(fontSize: 15, height: 1.4),
+              ),
+              if (post.codeSnippet != null && post.codeSnippet!.isNotEmpty)
+                _buildCodeBlock(post.codeSnippet!),
+              const SizedBox(height: 20),
+              Container(height: 1, color: Colors.grey[200]),
+              const SizedBox(height: 10),
+              _buildActionButtons(context, post),
+            ],
+          ),
         ),
       ),
     );
